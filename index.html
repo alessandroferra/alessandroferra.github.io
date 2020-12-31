@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bitter:wght@400;700&family=Righteous&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <!--<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>-->
+    <script src="js/vue.js">
+
+    </script>
+    <title>DIR | Stato servizi</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- Just an image -->
+<nav class="navbar navbar-light bg-primary">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="assets/brand/logo.svg" alt="" width="95" height="50">
+    </a>
+  </div>
+</nav>
+<div class="container">
+
+
+<div class="px-4 pt-5 rounded-lg text-center">
+  <h1 class="display-4" style="font-weight: bold;">Stato dei servizi</h1>
+  <p class="lead">Questo sito permette di visualizzare lo stato dei servizi UniUPO, al momento sono disponibili i 3 siti principali: <b>UniUPO</b>, <b>DIR</b>, <b>ESSE3. In futuro, se richiesto, potranno essere aggiunti altri siti.</b> </p>
+  <hr class="my-4" style="width: 100%">
+  <p>Attenzione! Questo sito non è ufficiale e potrebbe non essere attendibile.</p>
+</div>
+    <div class="card-tablet">
+      <div v-for="website of websites" class="property-card">
+        <a :href="website.link">
+          <div :style="website.image" class="property-image">
+            <div class="property-image-title">
+            </div>
+          </div></a>
+        <div class="property-description">
+          <span style="margin-top:1.9em; position: absolute;	left: 50%;
+          -webkit-transform: translateX(-50%);
+          transform: translateX(-50%)" :class="[website.type === 'official' ? 'bg-success' : 'bg-warning']" class="badge text-dark">{{website.type}}</span>
+          <h5 class="card-title">{{website.name}}</h5>
+          <p>{{website.description}}</p>
+
+        </div>
+        <a :class="[website.status === 'online' ? 'btn-success' : 'btn-danger']" class="btn property-social-icons" :href="website.link" role="button">{{website.status }}	<i :class="[website.status === 'online' ? 'fa-check' : 'fa-exclamation-triangle']" class="fas"></i></a>
+      </div>
+    </div>
+    </div>
+    <div class="footer bg-primary text-white">
+    <h6 class="footer-block text-center"><i class="fas fa-code"></i> with <i class="fas fa-heart"></i> by Alessandro Ferrari</h6>
+    </div>
+  </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="js/master.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        websites: [
+             {
+                 name: 'UniUPO',
+                 image: 'background-image:url(\'https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80\');',
+                 description: 'Homepage dell\'università, comprende tutti i dipartimenti e le pagine principali.',
+                  check: 'https://www.uniupo.it/sites/all/themes/bootstrap/unipm/img/std/logo.png',
+                  link: 'https://uniupo.it' ,
+                  type: 'official',
+                 status: null,
+             },
+             {
+                 name: 'DIR - UniUPO',
+                 image: 'background-image:url(\'https://images.unsplash.com/photo-1561089489-f13d5e730d72?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=967&q=80\');',
+                 description: 'Sito web della Didattica in Rete, permette di accedere ai materiali dei corsi frequentati dallo studente.',
+                  check: 'https://www.dir.uniupo.it/pluginfile.php/1/core_admin/logocompact/300x300/1608287681/UPOdir.png',
+                  link: 'https://dir.uniupo.it' ,
+                  type: 'official',
+                 status: null,
+             },
+             {
+                 name: 'ESSE3 - UniUPO',
+                 image: 'background-image:url(\'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80\');',
+                 description: 'Sito dei servizi online, imatricolazioni, pagamento delle tasse, esami, valutazioi ecc...',
+                 check: 'https://www.studenti.uniupo.it/img/layout/logo.png',
+                 link: 'https://www.studenti.uniupo.it' ,
+                 type: 'official',
+                 status: null,
+             },
+             {
+                 name: 'DIR - Backup Informatica',
+                 image: 'background-image:url(\'https://images.unsplash.com/photo-1586772002345-339f8042a777?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80\');',
+                 description: 'Sito di backup per gli studenti frequentanti il primo anno del corso di Informatica.',
+                 check: 'https://dir.uniupo.space/assets/logo/500x250.png',
+                 link: 'https://dir.uniupo.space' ,
+                 type: 'unofficial',
+                 status: null,
+             },
+         ]
+      },
+      created(){
+        for (let website of this.websites) {
+          this.checkImage(website.check, function(){ website.status = 'online' }, function(){ website.status = 'offline' });
+  }
+      },
+      methods:{
+        checkImage: function (imageSrc, good, bad) {
+          var img = new Image();
+          img.onload = good;
+          img.onerror = bad;
+          img.src = imageSrc;
+      }
+      }
+    })
+  </script>
+
+
+  </body>
+</html>
